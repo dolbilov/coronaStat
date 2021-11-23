@@ -22,8 +22,12 @@ public class FileParser {
      data was cached at 22.11.2021
      */
 
-    public static final String[] fileNames = {"usa", "india", "brazil", "uk", "russia", "turkey", "france", "iran",
-            "germany", "argentina", "israel", "switzerland", "japan", "china", "world"};
+    public static final String[] optionalCountries = {"usa", "india", "brazil", "uk", "russia", "turkey", "france", "iran",
+            "germany", "argentina", "israel"};
+
+    public static final String[] requiredCountries = {"switzerland", "japan", "china", "world"};
+
+    public static final String[] fileNames = UnionArrays(optionalCountries, requiredCountries);
 
     private static final String prefix = "stats" + File.separator;
     private static final String postfix = ".txt";
@@ -73,5 +77,15 @@ public class FileParser {
         }
 
         return convertedList;
+    }
+
+    private static String[] UnionArrays(String[] first, String[] second)
+    {
+        String[] result = new String[first.length + second.length];
+        int ind = 0;
+        for (String s : first) result[ind++] = s;
+        for (String s : second) result[ind++] = s;
+
+        return result;
     }
 }

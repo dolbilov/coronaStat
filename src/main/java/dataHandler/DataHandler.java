@@ -1,6 +1,7 @@
 package dataHandler;
 
 import configuration.ConfigManager;
+import logger.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 public class DataHandler {
-    private DataHandler() throws IOException {
+    private DataHandler() {
         GetData();
         HandleData();
     }
@@ -19,15 +20,23 @@ public class DataHandler {
     private static final Map<String, List<Integer>> reducedData = new HashMap<>();
     private static final Map<String, List<Integer>> diffForReducedPeriod = new HashMap<>();
 
-    public static DataHandler getInstance() throws IOException {
+    public static DataHandler getInstance() {
         if (instance == null)
             instance = new DataHandler();
 
         return instance;
     }
 
-    private void GetData() throws IOException {
-        rowData = FileParser.ReadDataFromFiles();
+    private void GetData() {
+        try
+        {
+            rowData = FileParser.ReadDataFromFiles();
+        }
+        catch (Exception exp)
+        {
+            Logger.writeError(exp.getMessage());
+            System.exit(-1);
+        }
     }
 
     // TODO: create handle function
