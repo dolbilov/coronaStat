@@ -69,7 +69,7 @@ public class DataHandler {
             {
                 var endIndex = Math.min(i + step, rowData.get(country).size());
 
-                int sum = 0;
+                long sum = 0L;
                 for (int j = i; j < endIndex; j++)
                 {
                     sum += rowData.get(country).get(j);

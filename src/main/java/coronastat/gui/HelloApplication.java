@@ -1,5 +1,6 @@
 package coronastat.gui;
 
+import Plotter.GUICreator;
 import Plotter.GraphPlotter;
 import configuration.ConfigManager;
 import dataHandler.DataHandler;
@@ -7,6 +8,7 @@ import dataHandler.FileParser;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import logger.Logger;
 
@@ -22,18 +24,24 @@ public class HelloApplication extends Application {
         {
             ConfigManager.Initialize();
             Logger.writeInfo("Program started");
-            Scene scene = GraphPlotter.CreateGraph();
+
+            var series = GraphPlotter.CreateGraph("russia");
+
+            BorderPane root = new BorderPane();
+            root.setCenter(series);
+
+            var comboBox = GUICreator.CreateComboBox();
+            comboBox.setOnAction(event -> root.setCenter(GraphPlotter.CreateGraph(comboBox.getValue())));
+            root.setTop(comboBox);
+
+
+            Scene scene = new Scene(root, 1200, 800);
             stage.setScene(scene);
             stage.show();
         }
         catch (Exception exp) {
-            System.out.println(exp.getMessage());
+            Logger.writeFatal(exp.getMessage());
         }
-
-
-
-        //Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-
     }
 
     public static void main(String[] args)

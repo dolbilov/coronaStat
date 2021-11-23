@@ -1,5 +1,7 @@
 package dataHandler;
 
+import Service.Utils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,7 +29,7 @@ public class FileParser {
 
     public static final String[] requiredCountries = {"switzerland", "japan", "china", "world"};
 
-    public static final String[] fileNames = UnionArrays(optionalCountries, requiredCountries);
+    public static final String[] fileNames = Utils.UnionArrays(optionalCountries, requiredCountries);
 
     private static final String prefix = "stats" + File.separator;
     private static final String postfix = ".txt";
@@ -79,13 +81,5 @@ public class FileParser {
         return convertedList;
     }
 
-    private static String[] UnionArrays(String[] first, String[] second)
-    {
-        String[] result = new String[first.length + second.length];
-        int ind = 0;
-        for (String s : first) result[ind++] = s;
-        for (String s : second) result[ind++] = s;
 
-        return result;
-    }
 }
