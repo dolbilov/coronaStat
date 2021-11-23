@@ -1,9 +1,13 @@
 package configuration;
 
 import com.google.gson.Gson;
+import logger.Logger;
 
 import java.io.*;
 import java.lang.module.FindException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 /**
@@ -19,9 +23,6 @@ public class ConfigManager {
 
     /**Contains info about config file*/
     private static final File f = new File(filename);
-
-    /**FileWriter object to save data to the config file*/
-    private static FileWriter fileWriter;
 
     /**Check is config was initialized to prevent using with initialization*/
     public static Boolean isInitialized = false;
@@ -43,22 +44,21 @@ public class ConfigManager {
         if (!f.exists())
             throw new FindException("File with settings not found");
 
-        String data = new BufferedReader(new FileReader(f)).readLine();
+        StringBuilder sb = new StringBuilder();
+        Files.lines(Paths.get(filename)).forEach(sb::append);
+        String data = sb.toString();
+
         var gson = new Gson();
         currentConfig = gson.fromJson(data, Config.class);
+        Logger.writeInfo("Config was initialized from file");
     }
-
-
 
     /**
      * Getter for <i>isDebugMode</i>
      * @see Config#isDebugMode
      * @return Current value of <i>isDebugMode</i>
-     * @throws IllegalAccessException if config was not initialized
      */
-    public static Boolean getIsDebugMode() throws IllegalAccessException {
-        if (!isInitialized)
-            throw new IllegalAccessException("Config should be initialized before using");
+    public static Boolean getIsDebugMode() {
         return currentConfig.isDebugMode;
     }
 
@@ -67,11 +67,13 @@ public class ConfigManager {
      * Getter for <i>logFileName</i>
      * @see Config#logFileName
      * @return Current value of <i>logFileName</i>
-     * @throws IllegalAccessException if config was not initialized
      */
-    public static String getLogFileName() throws IllegalAccessException {
-        //if (!isInitialized)
-            //throw new IllegalAccessException("Config should be initialized before using");
+    public static String getLogFileName() {
         return currentConfig.logFileName;
+    }
+
+    public static int getStep()
+    {
+        return currentConfig.step;
     }
 }

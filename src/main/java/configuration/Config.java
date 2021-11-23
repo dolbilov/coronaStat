@@ -10,5 +10,7 @@ public class Config {
     Boolean isDebugMode = false;
 
     /** FileName for logs */
-    String logFileName = "settings.json";
+    String logFileName = "info.log";
+
+    int step = 14;
 }

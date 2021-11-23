@@ -35,7 +35,7 @@ public class FileParser {
         for (var fileName: fileNames)
         {
             // check if file exists
-            String fullName = fileName + postfix;
+            String fullName = prefix + fileName + postfix;
             File file = new File(fullName);
             if (!file.exists())
             {

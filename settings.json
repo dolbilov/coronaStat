@@ -1,4 +1,5 @@
 {
   "isDebugMode": false,
-  "logFileName": "info.log"
+  "logFileName": "info.log",
+  "step": 14
 }

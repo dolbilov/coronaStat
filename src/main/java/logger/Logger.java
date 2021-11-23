@@ -19,12 +19,19 @@ public class Logger {
      * @param level message level of LogLevel
      * @param message comment that should be written
      */
-    private static void writeToLog(LogLevel level, String message) throws IOException, IllegalAccessException {
-        String text =  level + " " + DataTimeUtils.GetCurrentDateTime() + " " + message + "\n";
+    private static void writeToLog(LogLevel level, String message)
+    {
+        try {
+            String text =  level + " " + DataTimeUtils.GetCurrentDateTime() + " " + message + "\n";
 
-        var fw = new FileWriter(ConfigManager.getLogFileName());
-        fw.write(text);
-        fw.close();
+            var fw = new FileWriter(ConfigManager.getLogFileName(), true);
+            fw.write(text);
+            fw.close();
+        }
+        catch (Exception exception) {
+            System.out.println("Error with logs: " + exception.getMessage());
+        }
+
     }
 
     /**
@@ -32,7 +39,7 @@ public class Logger {
      * @param message Message that should be written to the log file
      * @see Logger#writeToLog(LogLevel, String) 
      */
-    public static void writeFatal(String message) throws IOException, IllegalAccessException {
+    public static void writeFatal(String message) {
         writeToLog(LogLevel.FATAL, message);
     }
 
@@ -41,7 +48,7 @@ public class Logger {
      * @param message Message that should be written to the log file
      * @see Logger#writeToLog(LogLevel, String)
      */
-    public static void writeError(String message) throws IOException, IllegalAccessException {
+    public static void writeError(String message) {
         writeToLog(LogLevel.ERROR, message);
     }
 
@@ -50,7 +57,7 @@ public class Logger {
      * @param message Message that should be written to the log file
      * @see Logger#writeToLog(LogLevel, String)
      */
-    public static void writeWarn(String message) throws IOException, IllegalAccessException {
+    public static void writeWarn(String message) {
         writeToLog(LogLevel.WARN, message);
     }
 
@@ -59,7 +66,7 @@ public class Logger {
      * @param message Message that should be written to the log file
      * @see Logger#writeToLog(LogLevel, String)
      */
-    public static void writeInfo(String message) throws IOException, IllegalAccessException {
+    public static void writeInfo(String message) {
         writeToLog(LogLevel.INFO, message);
     }
 
@@ -68,7 +75,7 @@ public class Logger {
      * @param message Message that should be written to the log file
      * @see Logger#writeToLog(LogLevel, String)
      */
-    public static void writeDebug(String message) throws IOException, IllegalAccessException {
+    public static void writeDebug(String message) {
         if (ConfigManager.getIsDebugMode())
             writeToLog(LogLevel.DEBUG, message);
     }
