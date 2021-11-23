@@ -6,10 +6,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 
-
+/**
+ * Class to create ComboBox for choosing optional country
+ * @author Kirill Dolbilov
+ * @version 1.0
+ */
 public class GUICreator {
+    /** Private constructor to avoid creating objects*/
     private GUICreator() {}
 
+    /**
+     * Method for creating ComboBox for choosing country
+     * @return ComboBox with countries
+     */
     public static ComboBox<String> CreateComboBox()
     {
         ObservableList<String> tempList = FXCollections.observableArrayList(FileParser.optionalCountries);
@@ -22,7 +31,7 @@ public class GUICreator {
             tempList.set(i,newString);
         }
 
-        ComboBox<String> countriesComboBox = new ComboBox<String>(tempList);
+        ComboBox<String> countriesComboBox = new ComboBox<>(tempList);
 
         // set default elements
         countriesComboBox.setValue("Russia");

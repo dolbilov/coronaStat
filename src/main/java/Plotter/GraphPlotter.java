@@ -12,9 +12,21 @@ import javafx.scene.chart.XYChart;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that create graph representation of COVID-19 cases stats
+ * @author Kirill Dolbilov
+ * @version 1.0
+ */
 public class GraphPlotter {
+    /** Log base that uses to reduce graph size */
     private static final int logBase = 10;
 
+    /**
+     * Create LineChart(graph) with stats
+     * @param countryName Name of country from optional countries list
+     *                    that will be added to graph
+     * @return LineChart(graph) with required countries + countryName
+     */
     public static LineChart<Number, Number> CreateGraph(String countryName) {
         NumberAxis x = new NumberAxis();
         NumberAxis y = new NumberAxis();

@@ -12,5 +12,6 @@ public class Config {
     /** FileName for logs */
     String logFileName = "info.log";
 
+    /** How many days will be reduced to one*/
     int step = 14;
 }

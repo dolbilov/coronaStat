@@ -9,31 +9,48 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
+/**
+ * Class that parse txt stats
+ *
+ *      At this moment 10 countries with the max Covid-19 cases:
+ *         USA, India, Brazil, UK, Russia, Turkey, France, Iran, Germany, Argentina
+ *      Moreover let's add stats about following countries:
+ *         Israel, Switzerland, Japan, China
+ *      And will look at the entire stats of all the world
+ *
+ *      We use stats from https://www.worldometers.info/coronavirus/
+ *      starts at 15.02.2020
+ *      data was cached at 22.11.2021
+ *
+ *
+ * @author Kirill Dolbilov
+ * @version 1.0
+ */
 public class FileParser {
+    /** Private constructor to avoid creating objects of this class*/
     private FileParser() {}
 
-    /*
-     At this moment 10 countries with the max Covid-19 cases:
-        USA, India, Brazil, UK, Russia, Turkey, France, Iran, Germany, Argentina
-     Moreover let's add stats about following countries:
-        Israel, Switzerland, Japan, China
-     And will look at the entire stats of all the world
-
-     We use stats from https://www.worldometers.info/coronavirus/
-     starts at 15.02.2020
-     data was cached at 22.11.2021
-     */
-
+    /** Optional countries that user can choose from ComboBox */
     public static final String[] optionalCountries = {"usa", "india", "brazil", "uk", "russia", "turkey", "france", "iran",
             "germany", "argentina", "israel"};
 
+    /** Required countries that will be shown at graph */
     public static final String[] requiredCountries = {"switzerland", "japan", "china", "world"};
 
+    /** Array of txt filenames*/
     public static final String[] fileNames = Utils.UnionArrays(optionalCountries, requiredCountries);
 
+    /** Prefix for txt file names */
     private static final String prefix = "stats" + File.separator;
+
+    /** Postfix for txt file names */
     private static final String postfix = ".txt";
 
+    /**
+     * Read data from files
+     * @return HashMap of type <countryName, List of cases>
+     * @throws IOException if it is some problems with files
+     */
     public static Map<String, List<Integer>> ReadDataFromFiles() throws IOException {
         Map<String, List<Integer>> stats = new HashMap<>();
 
@@ -69,6 +86,11 @@ public class FileParser {
         return stats;
     }
 
+    /**
+     * Convert string array to list of integer
+     * @param data List of string representations of numbers
+     * @return List of integers
+     */
     private static List<Integer> ConvertStringArrayToIntList(String[] data)
     {
         List<Integer> convertedList = new ArrayList<>();

@@ -1,13 +1,28 @@
 package Service;
 
+/**
+ * Class with helpful methods
+ */
 public class Utils {
+    /** Private constructor to avoid creating instances*/
     private Utils() {}
 
+    /**
+     * Method for capitalize string (first letter if UPPER case and all the other is lower case)
+     * @param oldString String that will be capitalized
+     * @return Capitalized string
+     */
     public static String Capitalize(String oldString)
     {
         return oldString.substring(0,1).toUpperCase() + oldString.substring(1);
     }
 
+    /**
+     * Method to union string arrays
+     * @param first First string array
+     * @param second Second string array
+     * @return New string array that is the union of arrays
+     */
     public static String[] UnionArrays(String[] first, String[] second)
     {
         String[] result = new String[first.length + second.length];

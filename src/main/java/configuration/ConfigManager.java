@@ -3,10 +3,10 @@ package configuration;
 import com.google.gson.Gson;
 import logger.Logger;
 
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.lang.module.FindException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 
@@ -72,6 +72,12 @@ public class ConfigManager {
         return currentConfig.logFileName;
     }
 
+
+    /**
+     * Getter for <i>step</i>
+     * @see Config#step
+     * @return Current value of step
+     */
     public static int getStep()
     {
         return currentConfig.step;

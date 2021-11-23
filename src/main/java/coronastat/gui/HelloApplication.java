@@ -3,21 +3,22 @@ package coronastat.gui;
 import Plotter.GUICreator;
 import Plotter.GraphPlotter;
 import configuration.ConfigManager;
-import dataHandler.DataHandler;
-import dataHandler.FileParser;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import logger.Logger;
 
-import java.io.IOException;
 
+/**
+ * Main application class
+ * @author Kirill Dolbilov
+ * @version 1.0
+ */
 public class HelloApplication extends Application {
+    /** Method that initialize config and create GUI*/
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+    public void start(Stage stage) {
         stage.setTitle("CoronaStat");
 
         try
@@ -25,7 +26,7 @@ public class HelloApplication extends Application {
             ConfigManager.Initialize();
             Logger.writeInfo("Program started");
 
-            var series = GraphPlotter.CreateGraph("russia");
+            var series = GraphPlotter.CreateGraph("brazil");
 
             BorderPane root = new BorderPane();
             root.setCenter(series);
@@ -34,16 +35,17 @@ public class HelloApplication extends Application {
             comboBox.setOnAction(event -> root.setCenter(GraphPlotter.CreateGraph(comboBox.getValue())));
             root.setTop(comboBox);
 
-
             Scene scene = new Scene(root, 1200, 800);
             stage.setScene(scene);
             stage.show();
+            Logger.writeInfo("Program has finished work");
         }
         catch (Exception exp) {
             Logger.writeFatal(exp.getMessage());
         }
     }
 
+    /** Main method*/
     public static void main(String[] args)
     {
         launch();

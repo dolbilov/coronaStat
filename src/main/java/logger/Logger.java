@@ -3,7 +3,6 @@ package logger;
 import configuration.ConfigManager;
 
 import java.io.FileWriter;
-import java.io.IOException;
 
 /**
  * Class for log info into log file

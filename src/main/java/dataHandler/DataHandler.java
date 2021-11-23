@@ -3,23 +3,40 @@ package dataHandler;
 import configuration.ConfigManager;
 import logger.Logger;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Class that handle data
+ * Using patterns: SINGLETON
+ * @author Kirill Dolbilov
+ * @version 1.0
+ */
 public class DataHandler {
+    /** Private constructor to avoid creating instance avoid getInstance()*/
     private DataHandler() {
         GetData();
         HandleData();
     }
 
+    /** The only instance of <i>DataHandler</i> class*/
     private static DataHandler instance = null;
+
+    /** Array for storing data from files*/
     private static Map<String, List<Integer>> rowData = new HashMap<>();
+
+    /** Array for storing reduced data (every STEP days)*/
     private static final Map<String, List<Integer>> reducedData = new HashMap<>();
+
+    /** Array for storing data about difference between week cases*/
     private static final Map<String, List<Integer>> diffForReducedPeriod = new HashMap<>();
 
+    /** Method to get instance of <i>DataHandler</i> class
+     * @see DataHandler#instance
+     * @return The only instance of <i>DataHandler</i>
+     */
     public static DataHandler getInstance() {
         if (instance == null)
             instance = new DataHandler();
@@ -27,6 +44,9 @@ public class DataHandler {
         return instance;
     }
 
+    /**
+     * Read data from files
+     */
     private void GetData() {
         try
         {
@@ -39,7 +59,9 @@ public class DataHandler {
         }
     }
 
-    // TODO: create handle function
+    /**
+     * Reduce data and calculate difference between week cases
+     */
     private void HandleData()
     {
         ReduceArray();
@@ -58,6 +80,9 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Reduce array to every STEP days
+     */
     private void ReduceArray()
     {
         // will analyze only every STEP (from Config) days
@@ -83,15 +108,23 @@ public class DataHandler {
         }
     }
 
+    /**
+     * Getter for diffForReducePeriod
+     * @see DataHandler#diffForReducedPeriod
+     * @return diffForReducePeriod
+     */
     public Map<String, List<Integer>> getDiffForReducedPeriod()
     {
         return diffForReducedPeriod;
     }
 
+    /**
+     * Getter for reducedData
+     * @see DataHandler#reducedData
+     * @return reduceData
+     */
     public Map<String, List<Integer>> getReducedData()
     {
         return reducedData;
     }
-
-
 }
