@@ -5,6 +5,7 @@ import dataHandler.FileParser;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
+import logger.Logger;
 
 /**
  * Class to create ComboBox for choosing optional country
@@ -35,6 +36,8 @@ public class GUICreator {
 
         // set default elements
         countriesComboBox.setValue("Russia");
+
+        Logger.writeDebug("ComboBox was created");
 
 
         return countriesComboBox;

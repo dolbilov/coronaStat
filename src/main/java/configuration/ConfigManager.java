@@ -31,7 +31,7 @@ public class ConfigManager {
     private ConfigManager() {}
 
     /** Current config */
-    public static Config currentConfig = null;
+    public static Config currentConfig = new Config();
 
     /**
      * Initialize config from file
@@ -39,10 +39,11 @@ public class ConfigManager {
      * @throws FindException if file not found
      */
     public static void Initialize() throws IOException {
-        isInitialized = true;
-
         if (!f.exists())
+        {
+            Logger.writeFatal("Config file not found");
             throw new FindException("File with settings not found");
+        }
 
         StringBuilder sb = new StringBuilder();
         Files.lines(Paths.get(filename)).forEach(sb::append);
@@ -50,6 +51,8 @@ public class ConfigManager {
 
         var gson = new Gson();
         currentConfig = gson.fromJson(data, Config.class);
+
+        isInitialized = true;
         Logger.writeInfo("Config was initialized from file");
     }
 

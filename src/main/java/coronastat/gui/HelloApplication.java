@@ -26,17 +26,22 @@ public class HelloApplication extends Application {
             ConfigManager.Initialize();
             Logger.writeInfo("Program started");
 
-            var series = GraphPlotter.CreateGraph("brazil");
+            var series = GraphPlotter.CreateGraph("russia");
 
             BorderPane root = new BorderPane();
             root.setCenter(series);
 
             var comboBox = GUICreator.CreateComboBox();
-            comboBox.setOnAction(event -> root.setCenter(GraphPlotter.CreateGraph(comboBox.getValue())));
+            comboBox.setOnAction(event ->
+                    {
+                        String newCountry = comboBox.getValue();
+                        root.setCenter(GraphPlotter.CreateGraph(newCountry));
+                        Logger.writeInfo(newCountry + " selected");
+                    });
+
             root.setTop(comboBox);
 
-            Scene scene = new Scene(root, 1200, 800);
-            stage.setScene(scene);
+            Scene scene = new Scene(root, 1200, 800); stage.setScene(scene);
             stage.show();
             Logger.writeInfo("Program has finished work");
         }

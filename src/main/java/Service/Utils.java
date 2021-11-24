@@ -1,5 +1,7 @@
 package Service;
 
+import logger.Logger;
+
 /**
  * Class with helpful methods
  */
@@ -14,6 +16,7 @@ public class Utils {
      */
     public static String Capitalize(String oldString)
     {
+        Logger.writeDebug("Capitalize method was called");
         return oldString.substring(0,1).toUpperCase() + oldString.substring(1);
     }
 
@@ -30,6 +33,7 @@ public class Utils {
         for (String s : first) result[ind++] = s;
         for (String s : second) result[ind++] = s;
 
+        Logger.writeDebug("UnionArrays method was called");
         return result;
     }
 }

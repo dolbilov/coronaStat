@@ -7,11 +7,21 @@ package configuration;
  */
 public class Config {
     /**Is DEBUG mode enabled */
-    Boolean isDebugMode = false;
+    Boolean isDebugMode;
 
     /** FileName for logs */
-    String logFileName = "info.log";
+    String logFileName;
 
     /** How many days will be reduced to one*/
-    int step = 14;
+    int step;
+
+    /**
+     * Package visible constructor to create default Config
+     */
+    Config()
+    {
+        isDebugMode = false;
+        logFileName = "info.log";
+        step = 30;
+    }
 }

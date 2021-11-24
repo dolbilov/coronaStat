@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,11 @@ public class GraphPlotter {
         for (var country : countriesToDraw)
         {
             country = country.toLowerCase();
+
+            if (rawX.get(country).size() != rawY.get(country).size())
+            {
+                Logger.writeWarn("Dimensions of X and Y are not match");
+            }
 
             XYChart.Series series = new XYChart.Series();
             series.setName(Utils.Capitalize(country));

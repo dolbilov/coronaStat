@@ -78,6 +78,8 @@ public class DataHandler {
             int lastIndex = reducedData.get(country).size() - 1;
             reducedData.get(country).remove(lastIndex);
         }
+
+        Logger.writeInfo("Data was calculated");
     }
 
     /**
@@ -106,6 +108,8 @@ public class DataHandler {
             }
             reducedData.put(country, reducedArray);
         }
+
+        Logger.writeInfo("Data was reduced with step " + ConfigManager.getStep());
     }
 
     /**

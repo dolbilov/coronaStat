@@ -1,6 +1,7 @@
 package dataHandler;
 
 import Service.Utils;
+import logger.Logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -82,6 +83,8 @@ public class FileParser {
 
             stats.put(fileName, convertedList);
         }
+
+        Logger.writeInfo("Data was successfully loaded from files");
 
         return stats;
     }
