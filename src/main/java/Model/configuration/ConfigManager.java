@@ -1,7 +1,7 @@
-package configuration;
+package Model.configuration;
 
 import com.google.gson.Gson;
-import logger.Logger;
+import Model.logger.Logger;
 
 import java.io.File;
 import java.io.IOException;

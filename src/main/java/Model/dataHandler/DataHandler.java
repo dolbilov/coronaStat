@@ -1,7 +1,7 @@
-package dataHandler;
+package Model.dataHandler;
 
-import configuration.ConfigManager;
-import logger.Logger;
+import Model.configuration.ConfigManager;
+import Model.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;

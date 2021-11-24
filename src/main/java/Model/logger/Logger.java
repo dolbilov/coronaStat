@@ -1,8 +1,8 @@
-package logger;
+package Model.logger;
 
-import configuration.ConfigManager;
-
+import Model.configuration.ConfigManager;
 import java.io.FileWriter;
+
 
 /**
  * Class for log info into log file

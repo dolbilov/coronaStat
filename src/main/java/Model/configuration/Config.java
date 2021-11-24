@@ -1,4 +1,4 @@
-package configuration;
+package Model.configuration;
 
 /**
  * Class that contains current settings

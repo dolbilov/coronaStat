@@ -1,11 +1,11 @@
-package Plotter;
+package View.Plotter;
 
-import Service.Utils;
-import dataHandler.FileParser;
+import Model.Service.Utils;
+import Model.dataHandler.FileParser;
+import Model.logger.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
-import logger.Logger;
 
 /**
  * Class to create ComboBox for choosing optional country

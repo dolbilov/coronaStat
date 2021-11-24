@@ -1,7 +1,7 @@
-package dataHandler;
+package Model.dataHandler;
 
-import Service.Utils;
-import logger.Logger;
+import Model.Service.Utils;
+import Model.logger.Logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -105,6 +105,4 @@ public class FileParser {
 
         return convertedList;
     }
-
-
 }

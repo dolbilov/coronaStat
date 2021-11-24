@@ -1,14 +1,14 @@
-package Plotter;
+package View.Plotter;
 
-import Service.Utils;
-import dataHandler.DataHandler;
-import dataHandler.FileParser;
+import Model.Service.Utils;
+import Model.dataHandler.DataHandler;
+import Model.dataHandler.FileParser;
+import Model.logger.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import logger.Logger;
 
 import java.util.ArrayList;
 import java.util.List;

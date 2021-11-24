@@ -1,13 +1,13 @@
-package coronastat.gui;
+package VM;
 
-import Plotter.GUICreator;
-import Plotter.GraphPlotter;
-import configuration.ConfigManager;
+import Model.configuration.ConfigManager;
+import Model.logger.Logger;
+import View.Plotter.GUICreator;
+import View.Plotter.GraphPlotter;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import logger.Logger;
 
 
 /**

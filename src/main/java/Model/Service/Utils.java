@@ -1,6 +1,6 @@
-package Service;
+package Model.Service;
 
-import logger.Logger;
+import Model.logger.Logger;
 
 /**
  * Class with helpful methods
